@@ -31,7 +31,7 @@ class Calculator
 
 		// Note: Order of addition matters here, 
 
-		$ret->addOperator("**", function($op_1, $op_2)
+		$ret->addOperator("pow", function($op_1, $op_2)
 		{
 			return pow($op_1, $op_2);
 		});
