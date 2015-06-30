@@ -22,6 +22,8 @@ Post-mortem:
 
 		- Can not delete operators in an obvious fashion. 
 
+		- Precedence of addition versus subtraction is odd. Should be essentially at the same level, system currently treats subtraction as less than addition leading to non-intuitive behaviour (it should fall back to evaluating left-to-right in that case)
+
 ** USAGE ** 
 
 php main.php "[string to evaluate]"

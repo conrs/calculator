@@ -22,7 +22,7 @@ class Calculator
 	/* makeBasicCalculator:
 
 		Factory method for producing a calculator object with the usual operators
-		( '**', 'v', '/', '*', '+', '-' )
+		( 'pow', '/', '*', '+', '-' )
 	*/
 
 	public static function makeBasicCalculator()
