@@ -13,19 +13,18 @@ Calculator
 		- may be fun to have this handle parenthesis anyway. 
 
 Post-mortem:
-	Calculator parses expressions using order of operations and exposes an interface allowing 
-	3rd party users to add operations. 
+	Calculator parses expressions using order of operations and exposes an 
+	interface allowing 3rd party users to add operations. 
 
 	Current limitations:
-		- Order of operations is a coincidence of when they register the operand handler. A bit 
-		leaky.
-
-		- Operations can not be substrings of eachother, as that leads to undefined behavior. We 
-		  will have to likely restrict them somewhat or use a regular expression style split function 
-		  in our execute handler. 
+		- Order of operations is a coincidence of when they register the operand 
+		  handler. A bit leaky.
+		- Operations can not be substrings of eachother, as that leads to 
+		  undefined behavior. We will have to likely restrict them somewhat or 
+		  use a regular expression style split function in our execute handler. 
 
 		- Can not delete operators in an obvious fashion. 
-		
+
 ** USAGE ** 
 
 php main.php "[string to evaluate]"
