@@ -24,6 +24,10 @@ Post-mortem:
 
 		- Precedence of addition versus subtraction is odd. Should be essentially at the same level, system currently treats subtraction as less than addition leading to non-intuitive behaviour (it should fall back to evaluating left-to-right in that case)
 
+			Modifying our operator registration function to accept priorities and iterating through every operand of the same priority in an inner loop inside execute should resolve this issue. 
+
+		- Eventual creation of Operation class to encapsulate number of operands and calculation would be a good move going forward should complexity increase. Changing the operation datastructure from an associative arary to a priority bucketed collection of Operations would help with operand precedence.
+
 ** USAGE ** 
 
 php main.php "[string to evaluate]"
