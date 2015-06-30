@@ -93,7 +93,7 @@ class Calculator
 	{
 		$ret = false;
 
-		echo "Evaluating $operand_1 $operation $operand_2\n";
+		//echo "Evaluating $operand_1 $operation $operand_2\n";
 
 		if(isset($this->operand_handlers[$operation]))
 		{
@@ -128,20 +128,29 @@ class Calculator
 		// TODO: Iterate backwards without having to reverse array, this is just a shortcut of inefficiency. Use that 
 		// in conjunction with found boolean to make code prettier. 
 
-		$handlers = $this->operand_handlers;
+		$handlers = array_reverse($this->operand_handlers);
 
 		foreach($handlers as $key => $value)
 		{
-			echo "Checking $key\n";
+			//echo "Checking $key\n";
 			if(stristr($str, $key))
 			{
-				echo "\n\tFound $key\n";
+				//echo "\n\tFound $key\n";
 				// Hey, we have that operator! Let's split ourselves up and find out what our operands are. 
 				$tokens = explode($key, $str);
 
-				$result += $this->getOperatorResult($this->execute($tokens[0]), $key, $this->execute($tokens[1]));
+				$lhs = $tokens[0];
+				$rhs = array();
 
-				$found_it = 1;
+				unset($tokens[0]);
+
+				$rhs = implode($tokens, $key);
+
+				// var_dump($lhs . " vs " . $rhs);
+				$result += $this->getOperatorResult($this->execute($lhs), $key, $this->execute($rhs));
+
+				$found_it = true;
+				break;
 			}
 		}
 
@@ -152,9 +161,9 @@ class Calculator
 		if(!$found_it) 
 		{
 			// :(
-			echo "\n\t Atom $str found.\n";
+			//echo "\n\t Atom $str found.\n";
 
-			$result = 0 + $str;		// rely on PHP's magic type coersion for now. #yolo
+			$result += 0 + $str;		// rely on PHP's magic type coersion for now. #yolo
 		}
 
 		return $result;
